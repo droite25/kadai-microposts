@@ -22,6 +22,8 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
+// 退会機能
+// Route::delete('destroy', 'UsersController@destroy')->name('delete.user');
 // ユーザ機能
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
@@ -32,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+        Route::delete('delete', 'UsersController@destroy')->name('delete.user');
     });
 
     Route::group(['prefix' => 'microposts/{id}'], function () {

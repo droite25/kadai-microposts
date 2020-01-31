@@ -14,11 +14,15 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                                <li class="dropdown-item">{!! link_to_route('users.show', 'My profile', ['id' => Auth::id()]) !!}</li>
-                                <li class="dropdown-item">{!! link_to_route('users.favorites', 'Favorite', ['id' => Auth::id()]) !!}</li>
-                                <li class="dropdown-divider"></li>
-                                <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
-                            </ul>
+                            <li class="dropdown-item">{!! link_to_route('users.show', 'My profile', ['id' => Auth::id()]) !!}</li>
+                            <li class="dropdown-item">{!! link_to_route('users.favorites', 'Favorite', ['id' => Auth::id()]) !!}</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-item">{!! Form::open(['route' => ['delete.user', $user->id], 'method' => 'delete']) !!}
+                            {!! Form::submit('退会', ['class' => 'btn btn-danger btn-sm']) !!}
+                        {!! Form::close() !!}</li>
+                        </ul>
                     </li>
                 @else
                     <li class="nav-item">{!! link_to_route('signup.get', 'Signup', [], ['class' => 'nav-link']) !!}</li>

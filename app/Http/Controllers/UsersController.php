@@ -77,4 +77,10 @@ class UsersController extends Controller
 
         return view('users.favorites', $data);
     }
+    
+    public function destroy($id)
+    {
+        User::find($id)->delete();
+        return redirect('/');
+    }
 }
